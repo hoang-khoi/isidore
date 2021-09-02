@@ -1,16 +1,17 @@
 package com.vietcatholicjp.isidore.domain.repositories;
 
-import com.vietcatholicjp.isidore.domain.entities.User;
+import com.vietcatholicjp.isidore.domain.models.entities.User;
 
 public interface UserRepository {
 
     /**
      * Update an existing user, if it is not there, insert a new one (hence upsert, duh).
-     * Implementation note: make sure user.id *is set accordingly* after calling this method.
+     * Implementation note: - Make sure user.id *is set accordingly* after calling this method. -
+     * Should throw an exception in the case of duplicated email.
      *
      * @param user A user instance to be persisted.
      */
-    void upsert(User user);
+    User upsert(User user);
 
     /**
      * @param id User's string ID.

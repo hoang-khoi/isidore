@@ -1,18 +1,20 @@
 package com.vietcatholicjp.isidore.infrastructure.repositories;
 
-import com.vietcatholicjp.isidore.domain.entities.User;
+import com.vietcatholicjp.isidore.domain.models.entities.User;
 import com.vietcatholicjp.isidore.domain.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.stereotype.Repository;
 
+@Repository
 @RequiredArgsConstructor
 public class MongoUserRepository implements UserRepository {
 
     private final MongoTemplate mongoTemplate;
 
     @Override
-    public void upsert(User user) {
-        mongoTemplate.save(user);
+    public User upsert(User user) {
+        return mongoTemplate.save(user);
     }
 
     @Override
