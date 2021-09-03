@@ -1,0 +1,29 @@
+type Query {
+    user(id: ID): User
+    login(email: String, pwd: String): String
+}
+
+type Mutation {
+    user(email: String, name: InputUserName): User
+    signup(email: String, pwd: String): User
+}
+
+type User {
+    id: ID
+    email: String
+    name: UserName
+}
+
+type UserName {
+    baptismalName: String
+    firstName: String
+    middleName: String
+    lastName: String
+}
+
+input InputUserName {
+    baptismalName: String
+    firstName: String
+    middleName: String
+    lastName: String
+}

@@ -11,5 +11,5 @@ public class User {
     private String id;
     private final String email;
     private final UserName name;
-    private final String hashedPwd;
+    private String hashedPwd;
 }

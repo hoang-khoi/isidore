@@ -21,4 +21,10 @@ public interface UserRepository {
      * @return The target user, null if not found.
      */
     User getById(String id);
+
+    /**
+     * @param email User's email
+     * @return Target user, null if not found.
+     */
+    User getByEmail(String email);
 }

@@ -32,7 +32,7 @@ class MongoUserRepositoryIntegrationTest {
 
     @Test
     void save_UserNotExisted_SuccessfullyCreated() {
-        User inputUser = new User("khoi@mail.com", new UserName("Joseph", "Khoi", "", "Hoang"), "");
+        User inputUser = new User("khoi@mail.com", new UserName("Joseph", "Khoi", "", "Hoang"));
         underTest.upsert(inputUser);
         User retrievedUser = mongoTemplate.findById(inputUser.getId(), User.class);
 
@@ -41,18 +41,10 @@ class MongoUserRepositoryIntegrationTest {
 
     @Test
     void save_UserExisted_SuccessfullyUpdated() {
-        User existedUser = new User(
-            "khoi@mail.com",
-            new UserName("Joseph", "Khoi", "", "Hoang"),
-            ""
-        );
+        User existedUser = new User("khoi@mail.com", new UserName("Joseph", "Khoi", "", "Hoang"));
         mongoTemplate.insert(existedUser);
 
-        User updatedUser = new User(
-            "hoang@mail.com",
-            new UserName("John", "Diep", "Hong Thi", "Tran"),
-            ""
-        );
+        User updatedUser = new User("hoang@mail.com", new UserName("John", "Diep", "", "Tran"));
         updatedUser.setId(existedUser.getId());
 
         underTest.upsert(updatedUser);
@@ -63,29 +55,17 @@ class MongoUserRepositoryIntegrationTest {
 
     @Test
     void save_EmailExisted_ThrowDuplicateKeyException() {
-        User existedUser = new User(
-            "khoi@mail.com",
-            new UserName("Joseph", "Khoi", "", "Hoang"),
-            ""
-        );
+        User existedUser = new User("khoi@mail.com", new UserName("Joseph", "Khoi", "", "Hoang"));
         mongoTemplate.insert(existedUser);
 
-        User newUser = new User(
-            "khoi@mail.com",
-            new UserName("Teresa", "Diep", "", "Tran"),
-            ""
-        );
+        User newUser = new User("khoi@mail.com", new UserName("Teresa", "Diep", "", "Tran"));
 
         assertThrows(DuplicateKeyException.class, () -> underTest.upsert(newUser));
     }
 
     @Test
     void getById_UserExisted_SuccessfullyRetrieved() {
-        User existedUser = new User(
-            "khoi@mail.com",
-            new UserName("Joseph", "Khoi", "", "Hoang"),
-            ""
-        );
+        User existedUser = new User("khoi@mail.com", new UserName("Joseph", "Khoi", "", "Hoang"));
         mongoTemplate.insert(existedUser);
         User retrievedUser = underTest.getById(existedUser.getId());
 
