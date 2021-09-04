@@ -15,7 +15,6 @@ class BCryptServiceTest {
 
     @Test
     void name() {
-        String hashed = "$2a$10$fl/v.qOhtsLB9dIo8fNcY.f2ZeMSIdF64SB5GM/Uc0.dgiwq55QVC";
         assertTrue(underTest.matches("rawPassword", "$2a$10$fl/v.qOhtsLB9dIo8fNcY.f2ZeMSIdF64SB5GM/Uc0.dgiwq55QVC"));
     }
 }

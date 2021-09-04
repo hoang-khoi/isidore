@@ -8,7 +8,6 @@ import com.vietcatholicjp.isidore.domain.models.entities.User;
 import com.vietcatholicjp.isidore.domain.models.value_objects.UserName;
 import com.vietcatholicjp.isidore.domain.repositories.UserRepository;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -20,10 +19,6 @@ class MongoUserRepositoryIntegrationTest {
         "it-database"
     );
     private final UserRepository underTest = new MongoUserRepository(mongoTemplate);
-
-    @BeforeEach
-    void setUp() {
-    }
 
     @AfterEach
     void tearDown() {

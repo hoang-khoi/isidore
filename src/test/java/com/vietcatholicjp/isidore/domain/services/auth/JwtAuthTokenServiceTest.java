@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 
 class JwtAuthTokenServiceTest {
 
-    AuthTokenService underTest = new JwtAuthTokenService(
+    private final AuthTokenService underTest = new JwtAuthTokenService(
         Keys.hmacShaKeyFor("(G+KbPeShVmYq3t6w9z$C&E)H@McQfTj".getBytes(StandardCharsets.UTF_8))
     );
 
