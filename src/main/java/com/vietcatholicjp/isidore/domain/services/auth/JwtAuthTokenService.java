@@ -1,19 +1,19 @@
 package com.vietcatholicjp.isidore.domain.services.auth;
 
+import com.vietcatholicjp.isidore.domain.config.JwtConfig;
 import com.vietcatholicjp.isidore.domain.models.value_objects.AuthClaim;
 import io.jsonwebtoken.Jwts;
-import java.security.Key;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public class JwtAuthTokenService implements AuthTokenService {
 
-    private final Key secret;
+    private final JwtConfig jwtConfig;
 
     @Override
     public String encode(AuthClaim claim) {
         return Jwts.builder()
-            .signWith(secret)
+            .signWith(jwtConfig.getKey())
             .setSubject(claim.getUser())
             .setExpiration(claim.getExpiry())
             .compact();
@@ -22,7 +22,7 @@ public class JwtAuthTokenService implements AuthTokenService {
     @Override
     public AuthClaim decode(String token) {
         var claim = Jwts.parserBuilder()
-            .setSigningKey(secret)
+            .setSigningKey(jwtConfig.getKey())
             .build()
             .parseClaimsJws(token);
 

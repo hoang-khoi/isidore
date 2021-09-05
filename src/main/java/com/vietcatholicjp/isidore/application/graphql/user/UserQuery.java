@@ -1,4 +1,4 @@
-package com.vietcatholicjp.isidore.application.graphql;
+package com.vietcatholicjp.isidore.application.graphql.user;
 
 import com.vietcatholicjp.isidore.domain.models.entities.User;
 import com.vietcatholicjp.isidore.domain.repositories.UserRepository;
@@ -15,7 +15,7 @@ public class UserQuery implements GraphQLQueryResolver {
     private final UserService userService;
 
     public User user(String id) {
-        return userRepository.getById(id);
+        return userRepository.findById(id);
     }
 
     public String login(String email, String pwd) {

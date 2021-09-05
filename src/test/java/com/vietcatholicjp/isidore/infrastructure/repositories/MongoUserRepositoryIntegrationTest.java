@@ -28,7 +28,7 @@ class MongoUserRepositoryIntegrationTest {
     @Test
     void save_UserNotExisted_SuccessfullyCreated() {
         User inputUser = new User("khoi@mail.com", new UserName("Joseph", "Khoi", "", "Hoang"));
-        underTest.upsert(inputUser);
+        underTest.insert(inputUser);
         User retrievedUser = mongoTemplate.findById(inputUser.getId(), User.class);
 
         assertEquals(inputUser, retrievedUser);
@@ -42,8 +42,8 @@ class MongoUserRepositoryIntegrationTest {
         User updatedUser = new User("hoang@mail.com", new UserName("John", "Diep", "", "Tran"));
         updatedUser.setId(existedUser.getId());
 
-        underTest.upsert(updatedUser);
-        User retrievedUser = underTest.getById(existedUser.getId());
+        underTest.insert(updatedUser);
+        User retrievedUser = underTest.findById(existedUser.getId());
 
         assertEquals(updatedUser, retrievedUser);
     }
@@ -55,21 +55,21 @@ class MongoUserRepositoryIntegrationTest {
 
         User newUser = new User("khoi@mail.com", new UserName("Teresa", "Diep", "", "Tran"));
 
-        assertThrows(DuplicateKeyException.class, () -> underTest.upsert(newUser));
+        assertThrows(DuplicateKeyException.class, () -> underTest.insert(newUser));
     }
 
     @Test
     void getById_UserExisted_SuccessfullyRetrieved() {
         User existedUser = new User("khoi@mail.com", new UserName("Joseph", "Khoi", "", "Hoang"));
         mongoTemplate.insert(existedUser);
-        User retrievedUser = underTest.getById(existedUser.getId());
+        User retrievedUser = underTest.findById(existedUser.getId());
 
         assertEquals(existedUser, retrievedUser);
     }
 
     @Test
     void getById_UserNotExisted_ReturnsNull() {
-        User retrievedUser = underTest.getById("nonexistence");
+        User retrievedUser = underTest.findById("nonexistence");
         assertNull(retrievedUser);
     }
 }

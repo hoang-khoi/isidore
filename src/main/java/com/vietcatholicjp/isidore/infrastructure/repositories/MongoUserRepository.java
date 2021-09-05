@@ -21,17 +21,17 @@ public class MongoUserRepository implements UserRepository {
     }
 
     @Override
-    public User upsert(User user) {
-        return mongoTemplate.save(user);
+    public User insert(User user) {
+        return mongoTemplate.insert(user);
     }
 
     @Override
-    public User getById(String id) {
+    public User findById(String id) {
         return mongoTemplate.findById(id, User.class);
     }
 
     @Override
-    public User getByEmail(String email) {
+    public User findByEmail(String email) {
         Query query = new Query();
         query.addCriteria(Criteria.where("email").is(email));
 

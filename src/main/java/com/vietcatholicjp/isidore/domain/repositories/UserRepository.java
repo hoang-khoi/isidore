@@ -5,7 +5,6 @@ import com.vietcatholicjp.isidore.domain.models.entities.User;
 public interface UserRepository {
 
     /**
-     * Update an existing user, if it is not there, insert a new one (hence upsert, duh).
      * Implementation note:
      * <ul>
      *     <li>Make sure user.id *is set accordingly* after calling this method.</li>
@@ -14,17 +13,17 @@ public interface UserRepository {
      *
      * @param user A user instance to be persisted.
      */
-    User upsert(User user);
+    User insert(User user);
 
     /**
      * @param id User's string ID.
      * @return The target user, null if not found.
      */
-    User getById(String id);
+    User findById(String id);
 
     /**
      * @param email User's email
      * @return Target user, null if not found.
      */
-    User getByEmail(String email);
+    User findByEmail(String email);
 }
