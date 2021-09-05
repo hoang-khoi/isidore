@@ -1,9 +1,9 @@
 package com.vietcatholicjp.isidore.application.graphql;
 
-import com.coxautodev.graphql.tools.GraphQLQueryResolver;
 import com.vietcatholicjp.isidore.domain.models.entities.User;
 import com.vietcatholicjp.isidore.domain.repositories.UserRepository;
 import com.vietcatholicjp.isidore.domain.services.user.UserService;
+import graphql.kickstart.tools.GraphQLQueryResolver;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

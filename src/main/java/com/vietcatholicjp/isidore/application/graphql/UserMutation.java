@@ -1,10 +1,10 @@
 package com.vietcatholicjp.isidore.application.graphql;
 
-import com.coxautodev.graphql.tools.GraphQLMutationResolver;
 import com.vietcatholicjp.isidore.domain.models.entities.User;
 import com.vietcatholicjp.isidore.domain.models.value_objects.UserName;
 import com.vietcatholicjp.isidore.domain.repositories.UserRepository;
 import com.vietcatholicjp.isidore.domain.services.user.UserService;
+import graphql.kickstart.tools.GraphQLMutationResolver;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
